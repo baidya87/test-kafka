@@ -1,0 +1,29 @@
+Go to location where kafka is installed/unzipped
+C:/kafka
+
+1) start the zookeeper server
+zookeeper-server-start config/zookeeper.properties
+
+2) start the kafka server
+kafka-server-start C:\kafka_2.12-2.8.0\config\server.properties
+
+3) create topic
+kafka-topics --bootstrap-server localhost:9092 --topic random-posts --create
+
+4) list topics
+kafka-topics --bootstrap-server localhost:9092 --list
+
+5) describe topic
+kafka-topics --bootstrap-server localhost:9092 --topic random-posts --describe
+
+6) alter topic to increase partition
+kafka-topics --bootstrap-server localhost:9092 --topic random-posts --partitions 3 --alter
+
+7) produce to a topic
+kafka-console-producer --bootstrap-server localhost:9092 --topic random-posts
+
+8) consume from a topic
+kafka-console-consumer --bootstrap-server localhost:9092 --topic random-posts
+
+9) Using property tags to display partition info, timestamp etc.
+kafka-console-consumer --bootstrap-server localhost:9092 --topic cat.dogs.stories --from-beginning --property print.timestamp=true --property print.partition=true
